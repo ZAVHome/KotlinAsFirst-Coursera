@@ -62,7 +62,7 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 60 * 60 + minutes * 60 + seconds
 
 /**
  * Тривиальная
@@ -71,7 +71,13 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+    val vershokInM = 4.445 / 100.00
+    val arshinInM = vershokInM * 16
+    val sagenInM= arshinInM * 3
+    println("vershokInM = $vershokInM; arshinInM = $arshinInM; sagenInM = $sagenInM ")
+    return sagenes * sagenInM + arshins * arshinInM + vershoks * vershokInM
+}
 
 /**
  * Тривиальная
@@ -91,7 +97,12 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
+    //d2= (х2— х1)2+ (y2— y1)2.
+    val distanceLength = sqrt(sqr(x2-x1) + sqr(y2-y1))
+    println("x1 = $x1; x2 = $x2; y1 = $y1; y2 = $y2; L - $distanceLength")
+    return distanceLength
+}
 
 /**
  * Простая
@@ -113,7 +124,11 @@ fun thirdDigit(number: Int): Int {
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = TODO()
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
+
+    val travelTime = (hoursArrive * 60 + minutesArrive) - (hoursDepart * 60 + minutesDepart)
+    return travelTime
+}
 
 /**
  * Простая
@@ -122,12 +137,23 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
-fun accountInThreeYears(initial: Int, percent: Int): Double = TODO()
 
+fun accountInThreeYears(initial: Int, percent: Int): Double {
+
+    val amountAndPercent = initial * (1 + percent / 100.0).pow(3)
+
+    return amountAndPercent
+}
 /**
  * Простая
  *
  * Пользователь задает целое трехзначное число (например, 478).
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
-fun numberRevert(number: Int): Int = TODO()
+fun numberRevert(number: Int): Int {
+    val num1 = number - (number / 10) * 10
+    val num2 = (number - (number / 100) * 100) / 10
+    val num3 = number / 100
+    println("$num1;$num2;$num3")
+    return num1 * 100 + num2 * 10 + num3
+}
